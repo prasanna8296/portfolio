@@ -1,0 +1,7 @@
+# node + parcel
+node_modules/
+.parcel-cache/
+dist/
+
+# gh-pages cache that caused your git add failure
+node_modules/.cache/gh-pages/
