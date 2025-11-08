@@ -1,0 +1,208 @@
+/* ===========================
+   NAVIGATION BAR (BIG TEXT)
+   =========================== */
+
+:root {
+  --nav-bg: rgba(10, 25, 47, 0.85);
+  --nav-border: #112240;
+  --text: #ccd6f6;
+  --accent: #64ffda;
+  --nav-height: 80px;     /* bigger navbar */
+}
+
+/* Make anchor jumps land correctly under fixed nav */
+[id] {
+  scroll-margin-top: calc(var(--nav-height) + 14px);
+}
+
+/* ===========================
+      NAVBAR WRAPPER
+   =========================== */
+
+.navbar {
+  width: 100%;
+  background: var(--nav-bg);
+  padding: 16px 0;      /* more padding */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  border-bottom: 1px solid var(--nav-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(2, 12, 27, 0.4);
+}
+
+/* ===========================
+      NAV CONTAINER
+   =========================== */
+
+.nav-container {
+  max-width: 1350px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(20px, 3vw, 36px);
+  min-height: var(--nav-height);
+}
+
+/* ===========================
+      LOGO — MUCH BIGGER
+   =========================== */
+
+.nav-logo {
+  color: var(--accent);
+  font-size: clamp(1.8rem, 2vw + 1.2rem, 2.4rem); /* BIGGER */
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.6px;
+  transition: transform 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-2px);
+  }
+}
+
+/* ===========================
+      NAV MENU — BIGGER TEXT
+   =========================== */
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
+
+  li a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text);
+
+    /* BIG TEXT FOR MENU */
+    font-size: clamp(1.3rem, 1.2vw + 1rem, 1.8rem);
+    font-weight: 600;
+
+    padding: 12px 16px; 
+    border-radius: 12px;
+    transition: color 0.2s ease, transform 0.12s ease;
+
+    /* Underline animation */
+    &::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 6px;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent);
+    }
+
+    &:hover::after,
+    &:focus-visible::after,
+    &.active::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* ===========================
+      HAMBURGER (BIG)
+   =========================== */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 7px;
+  padding: 12px;
+  border-radius: 10px;
+
+  span {
+    width: 32px;       /* bigger */
+    height: 4px;       /* thicker */
+    background: var(--text);
+    border-radius: 3px;
+    transition: 0.3s ease;
+  }
+}
+
+#menu-toggle {
+  display: none;
+}
+
+/* Hamburger → X animation */
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* ===========================
+      MOBILE MENU (BIG TEXT)
+   =========================== */
+
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: var(--nav-height);
+    right: 0;
+    background: var(--nav-bg);
+    width: min(90vw, 360px);
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+
+    transform: translateX(110%);
+    transition: transform 0.35s ease;
+    border-left: 1px solid var(--nav-border);
+    box-shadow: -12px 12px 30px rgba(2, 12, 27, 0.45);
+
+    li a {
+      width: 100%;
+      padding: 14px 18px;
+
+      /* EVEN BIGGER ON MOBILE */
+      font-size: 1.6rem;
+
+      &:hover {
+        background: rgba(100, 255, 218, 0.08);
+      }
+
+      &::after {
+        left: 16px;
+        right: 16px;
+        bottom: 10px;
+      }
+    }
+  }
+
+  #menu-toggle:checked ~ .nav-menu {
+    transform: translateX(0);
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .nav-logo {
+    font-size: 1.6rem;
+  }
+}
+
