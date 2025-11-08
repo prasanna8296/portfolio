@@ -3,18 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run dev",
     "dev": "parcel src/index.html --open",
-    "build": "parcel build src/index.html",
-    "clean": "rimraf .parcel-cache dist"
+    "build": "parcel build src/index.html --public-url ./",
+    "clean": "rimraf .parcel-cache dist",
+    "predeploy": "npm run build && echo > dist/.nojekyll",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.16.1",
+    "gh-pages": "^6.3.0",
     "parcel": "^2.12.0",
     "rimraf": "^5.0.5",
     "sass": "^1.79.0"
   },
   "dependencies": {
-    "vanilla-tilt": "^1.8.1"
+    "bootstrap": "^5.3.3",
+    "scrollreveal": "^4.0.9"
   }
 }
