@@ -7,3 +7,8 @@ dist/
 # gh-pages local cache
 node_modules/.cache/gh-pages/
 "@ | Set-Content -NoNewline .gitignore
+node_modules/
+.parcel-cache/
+dist/
+node_modules/.cache/
+
