@@ -1,7 +1,9 @@
+@"
 # node + parcel
 node_modules/
 .parcel-cache/
 dist/
 
-# gh-pages cache that caused your git add failure
+# gh-pages local cache
 node_modules/.cache/gh-pages/
+"@ | Set-Content -NoNewline .gitignore
